@@ -1,0 +1,27 @@
+.ng-invalid.ng-touched{
+    border-color: red;
+}
+
+/* .btn-group > label[ng-reflect-btn-radio]{
+  border-radius: 44px;
+  padding: 0 15px;
+  line-height: 30px;
+} */
+
+
+.my-datepicker-container .bs-datepicker-body {
+  background-color: #123456;
+}
+
+.card-header {
+  color: white;
+}
+
+
+.photo-control {
+  min-height: 300px;
+  vertical-align: middle;
+  text-align: center;
+  border: 1px dashed blue;
+  margin: 5px;
+}
