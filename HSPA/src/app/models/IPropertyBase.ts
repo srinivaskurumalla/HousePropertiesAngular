@@ -1,7 +1,7 @@
 export interface IPropertyBase {
   Id: number;
   SellRent:number | null,
-  Name: string;
+  Name: string | null;
   PType:string | null;
   FType:string | null;
   Price:number | null;

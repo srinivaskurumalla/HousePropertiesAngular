@@ -10,16 +10,32 @@ export class HousingService {
 
   constructor(private http:HttpClient) {}
 
-    getAllProperties(SellRent:number) : Observable<IPropertyBase[]>{
-      return this.http.get<IPropertyBase[]>('data/Properties.json').pipe(
+  getProperty(id:number){
+   return this.getAllProperties().pipe(
+      map(propertiesArray => {
+        //throw new Error('some error');
+        return propertiesArray.find(p => p.Id == id);
+      })
+    )
+  }
+
+    getAllProperties(SellRent?:number) : Observable<Property[]>{
+      return this.http.get<Property[]>('data/Properties.json').pipe(
         map(data => {
-          const propertiesArray:Array<IPropertyBase>  = [];
+          const propertiesArray:Array<Property>  = [];
+
 
           //properties in data.json file
           for(const prop in data){
+            if(SellRent){
             if(data[prop].SellRent == SellRent){
               propertiesArray.push(data[prop]);
             }
+          }
+          else{
+            propertiesArray.push(data[prop]);
+
+          }
           }
           let existingProperties = localStorage.getItem('newProperty');
 
@@ -29,15 +45,22 @@ export class HousingService {
             const loacalProperties = JSON.parse(existingProperties);
 
             for(const id in loacalProperties){
+              if(SellRent){
               if(loacalProperties.hasOwnProperty(id) && loacalProperties[id].SellRent == SellRent){
                 propertiesArray.push(loacalProperties[id]);
               }
+            }
+            else{
+              propertiesArray.push(loacalProperties[id]);
+
+            }
             }
 
           }
           return propertiesArray;
         })
-      )
+      );
+     // return this.http.get<Property[]>('data/properties.json');
     }
 
     // addProperty(property:Property){

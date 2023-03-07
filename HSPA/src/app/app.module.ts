@@ -22,6 +22,11 @@ import { UserRegistrationComponent } from './User/UserRegistration/UserRegistrat
 import { UserService } from './services/User.service';
 import { AlertifyService } from './services/alertify.service';
 import { AuthService } from './services/auth.service';
+import { PropertyDetailsComponent } from './Property/property-details/property-details.component';
+import { PropertyDetailsResolverService } from './Property/property-details/property-details-resolver.service';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+import { FilterPipe } from './Pipes/Filter.pipe';
+import { SortPipe } from './Pipes/sort.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,8 +34,11 @@ import { AuthService } from './services/auth.service';
     PropertyListComponent,
     NavBarComponent,
     AddPropertyComponent,
+    PropertyDetailsComponent,
     UserLoginComponent,
-    UserRegistrationComponent
+    UserRegistrationComponent,
+    FilterPipe,
+    SortPipe
    ],
   imports: [
     BrowserModule,
@@ -42,9 +50,12 @@ import { AuthService } from './services/auth.service';
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ButtonsModule.forRoot(),
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    NgxGalleryModule
+
+
   ],
-  providers: [HousingService,UserService,AlertifyService,AuthService],
+  providers: [HousingService,UserService,AlertifyService,AuthService,PropertyDetailsResolverService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
